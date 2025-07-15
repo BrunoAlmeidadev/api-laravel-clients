@@ -1,0 +1,9 @@
+.env
+volume_data/
+vendor/
+node_modules/
+*.log
+*.lock
+.idea/
+.vscode/
+.DS_Store
