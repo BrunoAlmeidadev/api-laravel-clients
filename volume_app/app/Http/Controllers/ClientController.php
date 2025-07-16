@@ -7,17 +7,13 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return response()->json(Client::all(), 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -38,9 +34,7 @@ class ClientController extends Controller
         );
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         $client = Client::find($id);
@@ -57,9 +51,7 @@ class ClientController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -88,11 +80,25 @@ class ClientController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(string $id)
     {
-        //
+        $client = Client::find($id);
+        if ($client){
+            $client->delete();
+
+            return response()->json(
+                [
+                    'message' => 'Client deleted successfully',
+                    'data' => $client
+                ], 200);
+
+        }else {
+            return response()->json(
+                [
+                    'message' => 'Client not found'
+                ], 404
+            );
+        }
     }
 }
