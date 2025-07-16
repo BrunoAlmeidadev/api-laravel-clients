@@ -11,5 +11,6 @@ Route::get('/status', function () {
 })->middleware('auth:sanctum');
 
 Route::apiResource('Clients', ClientController::class)->middleware('auth:sanctum');
-Route::post('/login', [AuthController::class, 'Login']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
     

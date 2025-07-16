@@ -23,6 +23,10 @@ class AuthController extends Controller
         }
 
         $user = auth()->user();
+
+        // Assume o tempo de expiração do token que está configurado no sanctum
+        //$token = $user->createToken($user->name, ['*'], now()->addHour())->plainTextToken;
+
         $token = $user->createToken($user->name)->plainTextToken;
 
         return ApiResponse::succes([
@@ -30,6 +34,12 @@ class AuthController extends Controller
             'email' => $user->email,
             'token' => $token
         ]);
+    }
+
+    public function Logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+        return ApiResponse::succes('Logout with success');
     }
         
 }
