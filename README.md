@@ -26,7 +26,7 @@ Este projeto fornece uma base preparada para rodar uma aplicação Laravel com D
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/laravel-docker-template.git
+git clone https://github.com/BrunoAlmeidadev/api-laravel-clients.git
 cd laravel-docker-template
 2. Copie o arquivo .env.example (futuramente usado pelo Laravel)
 bash
@@ -40,10 +40,11 @@ docker-compose up -d --build
 bash
 
 docker exec -it laravel_php bash
-composer create-project laravel/laravel .
 exit
 
 
 5. Acesse no navegador:
 
 http://localhost# api-laravel-clients
+
+Use o Postman, Thunder Client ou Insominia para testar as rotas.
