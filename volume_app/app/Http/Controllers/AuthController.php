@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ApiResponse;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -18,17 +19,16 @@ class AuthController extends Controller
         $attempt = auth()->attempt(['email' => $email, 'password' => $password]);
 
         if (!$attempt) {
-            return response()->json([
-                'error' => 'unauthorized'
-            ], 401);
+            return ApiResponse::unauthorized();
         }
 
         $user = auth()->user();
         $token = $user->createToken($user->name)->plainTextToken;
 
-        return response()->json([
-            'token' => $token,
-            'user' => $user
+        return ApiResponse::succes([
+            'user' => $user->name,
+            'email' => $user->email,
+            'token' => $token
         ]);
     }
         
